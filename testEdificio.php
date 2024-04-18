@@ -37,7 +37,5 @@ echo "\n----------------------SIETE-----------------------\n";
 echo $nuevoEdificio->calculaCostoEdificio(); #120000
 echo "\n----------------------OCHO-----------------------\n";
 echo $nuevoEdificio;
-// print_r($nuevoEdificio->getColObjDepartamentos());
 
-// echo $nuevoEdificio;
 

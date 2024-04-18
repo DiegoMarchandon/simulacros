@@ -97,45 +97,19 @@ class Edificio{
         $pisoDisponible = false;
         #coleccion de inmuebles en el edificio
         $inmuebles = $this->getColObjDepartamentos();
-        #hago un recorrido completo en caso de que los inmuebles ingresados se ingresen con sus pisos de forma desordenada?
+        
         #hago un recorrido parcial en caso de que los inmuebles ingresados se hagan con sus pisos de forma ordenada
-        while($inmuebles[$i]->getNroPiso() < $pisoDeseado && $pisoDisponible == false){ #pisos anteriores (uso el iterador de $i para esos pisos)
+        while($inmuebles[$i]->getNroPiso() < $pisoDeseado && $pisoDisponible == false){ #pisos anteriores 
             if($inmuebles[$i]->getTipoInmueble() == $tipoInmueble && $this->getColObjDepartamentos()[$i]->getObjPersona() == null){ #si el inmueble es del mismo tipo y está disponible
                 $pisoDisponible = true;
             }
             $i++;
         }
-        if($pisoDisponible == false){ # si siguió siendo false
+        if($pisoDisponible == false){ # si siguió siendo false (no habían pisos anteriores disponibles)
             $objInmueble->alquilarInmueble($objPersona);
         }
         return $pisoDisponible;
     }
-     /* public function registrarAlquilerInmueble($objInmueble,$objPersona){
-        
-        $tipoInmueble = $objInmueble->getTipoInmueble();
-        $pisoDeseado = $objInmueble->getNroPiso();
-        $i = 0;
-        $posibleAlquilar = true;
-        $registroAlquiler = false;
-        #recorrido parcial para ir verificando los inmuebles de pisos anteriores 
-        while($i < $pisoDeseado && $posibleAlquilar==true){
-            if($this->getColObjDepartamentos()[$i]->getNroPiso() == ($i+1) && #comparo el nro de piso
-                $this->getColObjDepartamentos()[$i]->getTipoInmueble() == $tipoInmueble){ # y el tipo de inmueble
-
-                if($this->getColObjDepartamentos()[$i]->getObjPersona() == null){ #hay pisos anteriores vacíos
-                    $posibleAlquilar = false;
-                }
-            }
-
-            $i++;
-            
-        }
-        if($posibleAlquilar==true){ #si la posibilidad de alquilar sigue siendo true luego de verificar pisos anteriores
-        $registroAlquiler = $objInmueble->alquilarInmueble($objPersona);
-        }
-
-    return $registroAlquiler;        
-    } */
        
     /* retorna el valor correspondiente a la suma de los costos de los inmuebles ALQUILADOS */
     public function calculaCostoEdificio(){
